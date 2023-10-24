@@ -12,6 +12,15 @@ public final class Constants {
     public static final String DEFAULT_LANGUAGE = "en";
     public static final String ANONYMOUS_USER = "anonymoususer";
 
+    public static final String TENANT_FILTER_NAME = "tenantFilter";
+    public static final String TENANT_PARAMETER_NAME = "tenantId";
+    public static final String TENANT_PARAMETER_TYPE = "int";
+    public static final String TENANT_COLUMN_NAME = "tenant_id";
+
+    public static final String AUTHORIZATION_HEADER = "Authorization";
+    public static final String BEARER_SCHEMA = "Bearer ";
+    public static final String TENANT_ID_CLAIM = "tenantId";
+
     private Constants() {
     }
 }

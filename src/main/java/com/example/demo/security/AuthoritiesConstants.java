@@ -5,6 +5,8 @@ package com.example.demo.security;
  */
 public final class AuthoritiesConstants {
 
+    public static final String SYSTEM_ADMIN = "ROLE_SYSTEM_ADMIN";
+
     public static final String ADMIN = "ROLE_ADMIN";
 
     public static final String USER = "ROLE_USER";
