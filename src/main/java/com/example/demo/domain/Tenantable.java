@@ -19,14 +19,14 @@ import javax.persistence.MappedSuperclass;
 @EntityListeners(TenantEntityListener.class)
 public class Tenantable extends AbstractAuditingEntity {
     @JsonIgnore
-    @Column(nullable = false)
-    private int tenantId;
+    @Column(nullable = true)
+    private Long tenantId;
 
-    public int getTenantId() {
+    public Long getTenantId() {
         return tenantId;
     }
 
-    public void setTenantId(int tenantId) {
+    public void setTenantId(Long tenantId) {
         this.tenantId = tenantId;
     }
 }

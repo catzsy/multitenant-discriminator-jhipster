@@ -8,10 +8,10 @@ import java.util.Collection;
 
 public class TenantAuthenticationToken extends UsernamePasswordAuthenticationToken {
     private final Object principal;
-    private final int tenantId;
+    private final Long tenantId;
 
     //principal, token, authorities
-    public TenantAuthenticationToken(Object principal, Object credentials, Collection<? extends GrantedAuthority> authorities, int tenantId) {
+    public TenantAuthenticationToken(Object principal, Object credentials, Collection<? extends GrantedAuthority> authorities, Long tenantId) {
         super(principal, credentials, authorities);
         setAuthenticated(true);
         this.principal = principal;
@@ -28,7 +28,7 @@ public class TenantAuthenticationToken extends UsernamePasswordAuthenticationTok
         return this.principal;
     }
 
-    public int getTenantId() {
+    public Long getTenantId() {
         return this.tenantId;
     }
 

@@ -1,5 +1,7 @@
 package com.example.demo.web.rest;
 
+import com.example.demo.config.Constants;
+import com.example.demo.security.AuthoritiesConstants;
 import com.example.demo.service.TenantService;
 import com.example.demo.web.rest.errors.BadRequestAlertException;
 import com.example.demo.service.dto.TenantDTO;
@@ -14,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +55,7 @@ public class TenantResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/tenants")
+    @Secured({AuthoritiesConstants.SYSTEM_ADMIN })
     public ResponseEntity<TenantDTO> createTenant(@Valid @RequestBody TenantDTO tenantDTO) throws URISyntaxException {
         log.debug("REST request to save Tenant : {}", tenantDTO);
         if (tenantDTO.getId() != null) {
@@ -73,6 +77,7 @@ public class TenantResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/tenants")
+    @Secured({AuthoritiesConstants.SYSTEM_ADMIN })
     public ResponseEntity<TenantDTO> updateTenant(@Valid @RequestBody TenantDTO tenantDTO) throws URISyntaxException {
         log.debug("REST request to update Tenant : {}", tenantDTO);
         if (tenantDTO.getId() == null) {
@@ -91,6 +96,7 @@ public class TenantResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tenants in body.
      */
     @GetMapping("/tenants")
+    @Secured({AuthoritiesConstants.SYSTEM_ADMIN })
     public ResponseEntity<List<TenantDTO>> getAllTenants(Pageable pageable) {
         log.debug("REST request to get a page of Tenants");
         Page<TenantDTO> page = tenantService.findAll(pageable);
@@ -105,6 +111,7 @@ public class TenantResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the tenantDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/tenants/{id}")
+    @Secured({AuthoritiesConstants.SYSTEM_ADMIN })
     public ResponseEntity<TenantDTO> getTenant(@PathVariable Long id) {
         log.debug("REST request to get Tenant : {}", id);
         Optional<TenantDTO> tenantDTO = tenantService.findOne(id);
@@ -118,6 +125,7 @@ public class TenantResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/tenants/{id}")
+    @Secured({AuthoritiesConstants.SYSTEM_ADMIN })
     public ResponseEntity<Void> deleteTenant(@PathVariable Long id) {
         log.debug("REST request to delete Tenant : {}", id);
         tenantService.delete(id);

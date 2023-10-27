@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TenantContext {
-    public int getTenantId() {
+    public Long getTenantId() {
         return ((TenantAuthenticationToken) SecurityContextHolder.getContext().getAuthentication()).getTenantId();
     }
 }

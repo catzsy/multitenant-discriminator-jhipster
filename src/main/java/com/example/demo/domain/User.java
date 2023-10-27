@@ -25,7 +25,7 @@ import java.util.Set;
 @Entity
 @Table(name = "jhi_user")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class User extends AbstractAuditingEntity implements Serializable {
+public class User extends Tenantable implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
